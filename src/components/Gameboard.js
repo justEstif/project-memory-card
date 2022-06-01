@@ -13,7 +13,7 @@ import theRevenant from "./img/theRevenant.png";
 
 import "./styles/Gameboard.css";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Frame from "./Frame";
 
 const getShuffledArr = (arr) => {
@@ -24,7 +24,7 @@ const getShuffledArr = (arr) => {
   }
   return newArr;
 };
-export default function Gameboard(props) {
+const getMovies = () => {
   const posters = [
     django,
     fightClub,
@@ -53,15 +53,14 @@ export default function Gameboard(props) {
     "The Lord of The Rings",
     "The Revenant",
   ];
-  const getMovies = () => {
-    const movies = [];
-    for (let i = 0; i < posters.length; i++) {
-      movies.push({ poster: posters[i], caption: captions[i] });
-    }
-    return movies;
-  };
+  const movies = [];
+  for (let i = 0; i < posters.length; i++) {
+    movies.push({ poster: posters[i], caption: captions[i] });
+  }
+  return movies;
+};
+export default function Gameboard(props) {
   const movies = getMovies();
-
   const getFrames = () => {
     return getShuffledArr(movies).map((movie, idx) => (
       <React.Fragment key={idx}>
@@ -74,21 +73,23 @@ export default function Gameboard(props) {
       </React.Fragment>
     ));
   };
-
   let clicked = [];
+
+  useEffect(() => setFrames(getFrames()), clicked);
+
   const handleClick = (idx) => {
-    console.log(movies);
     if (clicked.includes(idx)) {
-      console.log("end");
       clicked = [];
+      props.reset()
     } else {
       clicked.push(idx);
-      console.log("next");
+      props.increment();
+      setFrames(getFrames());
     }
   };
+  const [frames, setFrames] = useState(getFrames());
 
   // const { clicked } = props;
-  // const [frames, setFrames] = useState();
 
-  return <div className="grid-container">{getFrames()}</div>;
+  return <div className="grid-container">{frames}</div>;
 }

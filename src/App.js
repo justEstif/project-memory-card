@@ -6,9 +6,20 @@ import bg from "./components/img/bg.jpg";
 import "./App.css";
 
 function App() {
-  const [score, setScore] = useState(0);
-  const [bestScore, setBestScore] = useState(0);
-  const [clicked, setClicked] = useState([]);
+  let [score, setScore] = useState(0);
+  let [bestScore, setBestScore] = useState(0);
+  const incrementScore = () => {
+    setScore(score++)
+  };
+  const handleBestscore = () => {
+    if (score > bestScore) {
+      setBestScore(score)
+    }
+  }
+  const reset = () => {
+    handleBestscore()
+    setScore(0)
+  }
   return (
     <div
       className="app"
@@ -22,7 +33,10 @@ function App() {
       }}
     >
       <Header score={score} bestScore={bestScore} />
-      <Gameboard clicked={clicked} />
+      <Gameboard
+        increment={incrementScore}
+        reset={reset}
+      />
     </div>
   );
 }
