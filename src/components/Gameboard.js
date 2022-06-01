@@ -16,6 +16,14 @@ import "./styles/Gameboard.css";
 import React, { useState } from "react";
 import Frame from "./Frame";
 
+const getShuffledArr = (arr) => {
+  const newArr = arr.slice();
+  for (let i = newArr.length - 1; i > 0; i--) {
+    const rand = Math.floor(Math.random() * (i + 1));
+    [newArr[i], newArr[rand]] = [newArr[rand], newArr[i]];
+  }
+  return newArr;
+};
 export default function Gameboard(props) {
   const posters = [
     django,
@@ -45,25 +53,42 @@ export default function Gameboard(props) {
     "The Lord of The Rings",
     "The Revenant",
   ];
+  const getMovies = () => {
+    const movies = [];
+    for (let i = 0; i < posters.length; i++) {
+      movies.push({ poster: posters[i], caption: captions[i] });
+    }
+    return movies;
+  };
+  const movies = getMovies();
+
   const getFrames = () => {
-    return posters.map((poster, idx) => (
+    return getShuffledArr(movies).map((movie, idx) => (
       <React.Fragment key={idx}>
-        <Frame idx={idx} poster={poster} caption={captions[idx]} handleClick={handleClick} />
+        <Frame
+          idx={idx}
+          poster={movie.poster}
+          caption={movie.caption}
+          handleClick={handleClick}
+        />
       </React.Fragment>
     ));
   };
 
-  const clicked = []
+  let clicked = [];
   const handleClick = (idx) => {
-    console.log(idx)
-  }
+    console.log(movies);
+    if (clicked.includes(idx)) {
+      console.log("end");
+      clicked = [];
+    } else {
+      clicked.push(idx);
+      console.log("next");
+    }
+  };
 
   // const { clicked } = props;
   // const [frames, setFrames] = useState();
 
-  return (
-    <div className="grid-container">
-      {getFrames()}
-    </div>
-  );
+  return <div className="grid-container">{getFrames()}</div>;
 }
