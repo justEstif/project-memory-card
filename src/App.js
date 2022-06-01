@@ -14,7 +14,7 @@ function App() {
       className="app"
       style={{
         backgroundImage: `url(${bg})`,
-        backgroundPosition: "center center",
+        backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "repeat",
         width: "100%",

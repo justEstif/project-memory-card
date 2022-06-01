@@ -1,5 +1,7 @@
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  width: 50vw;
+  height: 60vh;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   margin: 0 5%;
 }

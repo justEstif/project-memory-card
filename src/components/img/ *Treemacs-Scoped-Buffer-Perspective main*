@@ -1,0 +1,28 @@
+ Documents
+  		github
+    		general_coding
+    		project-cv-application
+    		project-memory-card
+      		node_modules
+      		public
+      		src
+        		components
+          		img
+          		styles
+             Frame.css
+             Gameboard.css
+             Header.css
+           Frame.js
+           Gameboard.js
+           Header.js
+         App.css
+         App.js
+         index.js
+       package-lock.json
+       package.json
+       README.md
+       README.org
+  		notes
+  		org
+  		theOdinProject
+  		tutorial
