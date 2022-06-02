@@ -12,9 +12,9 @@ import theLoR from "./img/theLoR.jpg";
 import theRevenant from "./img/theRevenant.png";
 
 import "./styles/Gameboard.css";
+import Frame from "./Frame";
 
 import React, { useEffect, useState } from "react";
-import Frame from "./Frame";
 
 const getShuffledArr = (arr) => {
   const newArr = arr.slice();
@@ -24,6 +24,7 @@ const getShuffledArr = (arr) => {
   }
   return newArr;
 };
+
 const getMovies = () => {
   const posters = [
     django,
@@ -55,17 +56,25 @@ const getMovies = () => {
   ];
   const movies = [];
   for (let i = 0; i < posters.length; i++) {
-    movies.push({ poster: posters[i], caption: captions[i] });
+    movies.push({
+      id: i,
+      poster: posters[i],
+      caption: captions[i],
+    });
   }
   return movies;
 };
-export default function Gameboard(props) {
-  const movies = getMovies();
+
+
+export default function Gameboard({ changeScore, reset, changeBest }) {
+  let movies = getMovies();
+  let clicked = []
+  let best = 0
   const getFrames = () => {
-    return getShuffledArr(movies).map((movie, idx) => (
-      <React.Fragment key={idx}>
+    return getShuffledArr(movies).map((movie) => (
+      <React.Fragment key={movie.id}>
         <Frame
-          idx={idx}
+          idx={movie.id}
           poster={movie.poster}
           caption={movie.caption}
           handleClick={handleClick}
@@ -73,23 +82,28 @@ export default function Gameboard(props) {
       </React.Fragment>
     ));
   };
-  let clicked = [];
 
-  useEffect(() => setFrames(getFrames()), clicked);
+  useEffect(() => { }, [movies]);
 
-  const handleClick = (idx) => {
-    if (clicked.includes(idx)) {
-      clicked = [];
-      props.reset()
-    } else {
-      clicked.push(idx);
-      props.increment();
+  const handleClick = (id) => {
+
+    if (clicked.includes(movies[id]) || clicked.length >= movies.length) {
+      if (clicked.length >= best) {
+        best = clicked.length
+        changeBest(best)
+      }
+      reset()
+      clicked = []
+      movies = getMovies()
+      setFrames(getFrames());
+    }
+    else {
+      clicked.push(movies[id])
+      changeScore(clicked.length)
       setFrames(getFrames());
     }
   };
   const [frames, setFrames] = useState(getFrames());
-
-  // const { clicked } = props;
 
   return <div className="grid-container">{frames}</div>;
 }
