@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/project-memory-card/static/css/main.7feb807c.css",
+    "main.js": "/project-memory-card/static/js/main.9c196398.js",
+    "static/media/joker.png": "/project-memory-card/static/media/joker.a6480355cbbe2663436e.png",
+    "static/media/noTimeToDie.png": "/project-memory-card/static/media/noTimeToDie.3f68dee353a3b974cfaa.png",
+    "static/media/taxiDriver.png": "/project-memory-card/static/media/taxiDriver.4cfadd8a641eefb85f46.png",
+    "static/media/gladiator.png": "/project-memory-card/static/media/gladiator.de483b7ca698abff6698.png",
+    "static/media/fightClub.png": "/project-memory-card/static/media/fightClub.a00c8d75b836f63cde89.png",
+    "static/media/parasite.jpg": "/project-memory-card/static/media/parasite.1c3eb455b638cb163f8f.jpg",
+    "static/media/theLoR.jpg": "/project-memory-card/static/media/theLoR.23124781d858b5db6aa5.jpg",
+    "static/media/theRevenant.png": "/project-memory-card/static/media/theRevenant.ce3508c03b2becc9d7f1.png",
+    "static/media/forrestGump.jpg": "/project-memory-card/static/media/forrestGump.b3bdb0061aef8a79006a.jpg",
+    "static/media/bg.jpg": "/project-memory-card/static/media/bg.2cefffada699bb0fbec0.jpg",
+    "static/media/homeAlone.jpg": "/project-memory-card/static/media/homeAlone.b50238d503fd1e20858c.jpg",
+    "static/media/django.jpg": "/project-memory-card/static/media/django.e547f113499df3892777.jpg",
+    "static/media/inception.jpg": "/project-memory-card/static/media/inception.68b4fe63ba9eb58d6468.jpg",
+    "index.html": "/project-memory-card/index.html",
+    "main.7feb807c.css.map": "/project-memory-card/static/css/main.7feb807c.css.map",
+    "main.9c196398.js.map": "/project-memory-card/static/js/main.9c196398.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7feb807c.css",
+    "static/js/main.9c196398.js"
+  ]
+}
