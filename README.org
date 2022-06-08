@@ -1,0 +1,100 @@
+* Project Memory Card
+
+** How the Game Works
+- Pictures would be shown
+- You would select a picture
+- The pictures would be rearranged, and you score would increase by 1
+- If you pick a new picture ⬆, if you pick the same pic⬇
+- the game would restart, and if you had the best score yet, it would be shown in the best score
+** Assignment
+- Take a little bit of time to think about how you want to implement your application,
+- the features you want to implement, which components you need, and how to structure your application.
+- Your application should include a scoreboard, which counts the current score, and a “Best Score”, which shows the best score you achieved thus far.
+- You also need a couple of cards that display images and possibly informational text.
+- There should be a function that displays the cards in a random order anytime a user clicks one.
+- Be sure to invoke that function when the component mounts.
+
+- useEffect for rearranging I think
+  - probably some css thing
+  - I probably would need to get put the grid images as separate components
+  - There needs to be some way to track the ones that were clicked and the ones that weren't
+    - prehaps some boolean in state
+  - onHover effects using css
+  - some way to keep score or restart, and a way to tell that the game has ended
+- questions
+  - how to place them on the boar?
+
+  - how to randomize and keep id of them?
+    - think in terms of frame and pictures
+    - the pictures would hold the id, image and caption
+      #+begin_src js
+const pictures = {
+  1: {
+    id: uniqid(),
+    image: path("to image"),
+    caption: "info about image"
+  },
+}
+      #+end_src
+    - the frame would be used randomly hold a picture
+      #+begin_src js
+const frame = {
+  currentPicture: pictures[1],
+}
+      #+end_src
+    - there would be an array where we add the id of the clicked
+      - if frame.picture.id not in =clickedPicture []= => shuffle
+        - we increase score using =useEffect=
+      - else end game clear everything
+        - set to initial state
+    - each objects can have an id to keep track of them
+      - we pass the info around, but don't change it
+        - so we have the frame and the actually picture object
+          - you can change the frame that the picture is in
+    - need a scoreboard component
+
+
+#+begin_src js
+const picture = {
+1: {
+image, }
+}
+const picture = {
+  image: path,
+  caption: "some info",
+  id: "",
+  clicked: ""
+}
+const frame = {
+  <img src={picture.image.toString()}/>
+}
+#+end_src
+** Components
+*** index => App =>
+*** Header
+**** Title
+**** Subtitle
+**** Scoreboard
+- the score would be the same as the number of clicked
+*** Gameboard
+**** Frame
+***** [ ] Picture
+- some object to hold all the images and a key to identify them
+  - it also needs some property of clicked
+***** [ ] Caption
+**** make the grid responsive
+** Function
+*** to randomize picture position
+*** to increase count
+- some function to handle the score
+- the score itself should be in state in the scoreboard ??
+  - why should it be in the app?
+*** to keep track of what was clicked
+- some handleClick for the frame or picture
+  - handleClick in the App and Gameboard components
+** State
+*** App
+**** the array of the clicked pictures
+****
+** Props
+***
